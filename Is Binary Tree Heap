@@ -1,0 +1,18 @@
+{
+ if(tree==NULL)
+ return true;
+ 
+ if((tree->left==NULL)&&(tree->right==NULL))
+ return true;
+ 
+ bool left=isHeap(tree->left);
+ bool right=isHeap(tree->right);
+ 
+ if(left && right)
+    if((tree->data>tree->left->data)||(tree->data>tree->right->data))
+        return true;
+        return false;
+
+ return false;
+ 
+}
