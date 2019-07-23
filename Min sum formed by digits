@@ -1,0 +1,69 @@
+#include <iostream>
+#include<queue>
+using namespace std;
+
+long long min_sum(priority_queue<long long,vector<long long>,greater<long long>> pq,int n)
+{   
+    vector<long long> first;
+    vector<long long>second;
+
+    while(!pq.empty())
+    {
+        first.push_back(pq.top());
+        pq.pop();
+        if(!pq.empty())
+            {
+            second.push_back(pq.top());
+            pq.pop();
+            }
+        
+     }
+    //   for (long long i = 0; i < first.size(); i++) 
+    //       cout << first[i];
+    //       cout<<"\n";
+          
+    //     for (long long i = 0; i < second.size(); i++) 
+    //       cout << second[i];
+    long long f=0;
+    long long s=0;
+    long long m=1;
+    while(!first.empty())
+    {
+        f=f+first[first.size()-1]*m;
+        first.pop_back();
+        m=m*10;
+    }
+    long long z=1;
+    while(!second.empty())
+    {
+        s=s+second[second.size()-1]*z;
+        second.pop_back();
+        z=z*10;
+    }
+    // cout<<"\n"<<"FIRST IS "<<f<<"\n";
+    // cout<<"SECOND IS "<<s<<"\n";
+   return f+s; 
+    
+    
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t>0)
+	{
+	    long long n;
+	    cin>>n;
+	    priority_queue<long long,vector<long long>,greater<long long>> pq;
+	    for(long long i=0;i<n;i++)
+	    {
+    	    long long temp;
+	        cin>>temp;
+	        //cout<<temp<<" ";
+	        pq.push(temp);
+	    }
+	    cout<<min_sum(pq,n)<<"\n";
+	    t--;
+	}
+	return 0;
+}
